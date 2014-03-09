@@ -1,0 +1,6 @@
+.svn
+*.vimprojects
+.DS_Store
+*.swp
+Thumbs.db
+.gitconfig

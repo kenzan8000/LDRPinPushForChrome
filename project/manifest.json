@@ -1,0 +1,27 @@
+{
+    "name": "Livedoor Reader Pin Push for Chrome",
+    "version": "0.1",
+    "manifest_version": 2,
+
+    "description": "今見ているページをLivedoor Readerのピンに追加します",
+
+    "permissions": [
+        "tabs",
+        "http://*/*/",
+        "https://*/*/"
+    ],
+
+    "icons": {
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+
+    "background": {
+        "scripts": ["js/app.js"]
+    },
+
+    "browser_action": {
+        "default_icon": "icons/icon19.png",
+        "default_title": "Livedoor Reader Pin Push for Chrome"
+    }
+}
