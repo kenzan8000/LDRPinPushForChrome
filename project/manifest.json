@@ -17,7 +17,7 @@
     },
 
     "background": {
-        "scripts": ["js/app.js"]
+        "scripts": ["js/jquery-2.1.0.min.js", "js/app.js"]
     },
 
     "browser_action": {
