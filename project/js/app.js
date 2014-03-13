@@ -8,22 +8,23 @@ var addPin = function(link, title) {
     // API
     var APIURL = "http://reader.livedoor.com/api/pin/add?link=" + encodeURIComponent(link) + "&title=" + encodeURIComponent(title);
 
+    var responseDidRecieve = function(xhr) {
+        var statusCode = xhr.status;
+        if (xhr.responseText == "Not Authorized") { statusCode = 401; }
+        else if (xhr.responseText["ErrorCode"] == 401) { statusCode = 401; }
+        (statusCode == 401) ? deferred.reject() : deferred.resolve();
+    }
+
     // ajax
     var deferred = jQuery.Deferred();
     jQuery.ajax({
         type: "POST",
         url: APIURL,
         success: function(data, status, xhr) {
-            var statusCode = xhr.status;
-            if (xhr.responseText == "Not Authorized") { statusCode = 401; }
-            else if (xhr.responseText["ErrorCode"] == 401) { statusCode = 401; }
-            (statusCode == 401) ? deferred.reject() : deferred.resolve();
+            responseDidRecieve(xhr);
         },
         error: function(xhr, exception) {
-            var statusCode = xhr.status;
-            if (xhr.responseText == "Not Authorized") { statusCode = 401; }
-            else if (xhr.responseText["ErrorCode"] == 401) { statusCode = 401; }
-            (statusCode == 401) ? deferred.reject() : deferred.resolve();
+            responseDidRecieve(xhr);
         }
     });
     return deferred.promise();
